@@ -3,7 +3,7 @@ package nl.com.waes.rhmoreira.challenge.web.rest.vo;
 import org.springframework.http.ResponseEntity;
 
 /**
- * Generic class that can wrapped into a {@link ResponseEntity} to represent a uniform
+ * Generic class that can be wrapped by {@link ResponseEntity} to represent a uniform
  * response to be used by the rest controllers.
  * @author renato.moreira
  *
