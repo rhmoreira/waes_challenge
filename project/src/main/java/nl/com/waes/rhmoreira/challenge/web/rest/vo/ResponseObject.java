@@ -19,17 +19,5 @@ public class ResponseObject extends Message {
 		super(type);
 		this.value = value;
 	}
-	public ResponseObject() {
-	}
-
-	public ResponseObject(MessageType type) {
-		super(type);
-		// TODO Auto-generated constructor stub
-	}
-
-	public ResponseObject(MessageType type, String message) {
-		super(type, message);
-		// TODO Auto-generated constructor stub
-	}
 
 }

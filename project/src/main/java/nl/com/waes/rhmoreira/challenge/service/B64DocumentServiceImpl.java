@@ -31,9 +31,9 @@ public class B64DocumentServiceImpl implements B64DocumentService{
 	private DocumentRepository docRepo;
 
 	public JsonDocument save(String id, String lValue, String rValue) throws ChallengeException {
-		if (!isBase64(lValue))
+		if (lValue != null && !isBase64(lValue))
 			throw new ValidationException("Left side of the data is not a valid base64 value");
-		if (!isBase64(rValue))
+		if (rValue != null && !isBase64(rValue))
 			throw new ValidationException("Right side of the data is not a valid base64 value");
 
 		JsonDocument jsonDoc = getDocument(id);
@@ -44,7 +44,7 @@ public class B64DocumentServiceImpl implements B64DocumentService{
 	}
 
 	public JsonDocument save(String id, String value, Orientation orientation) throws ChallengeException {
-		if (!isBase64(value))
+		if (value != null && !isBase64(value))
 			throw new ValidationException("The data is not a valid base64 value");
 		
 		JsonDocument jsonDoc = getDocument(id);

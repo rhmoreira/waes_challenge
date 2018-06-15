@@ -22,9 +22,10 @@ public abstract class ChallengeBaseTest {
 	
 	@LocalServerPort
     protected int port;
-	public String hostUrl;
+	protected String hostUrl;
 	
 	protected RestTemplate authUserRestTemplate;
+	protected RestTemplate authAdminUserRestTemplate;
 	protected RestTemplate invalidUserRestTemplate;
 	protected RestTemplate publicRestTemplate = new RestTemplate();
 	
@@ -41,6 +42,11 @@ public abstract class ChallengeBaseTest {
 	@Before
 	public void setupInvalidAuthTemplate() {
 		this.invalidUserRestTemplate = createTemplate("rhmoreira", "4321");
+	}
+	
+	@Before
+	public void setupAuthAdminTemplate() {
+		this.authAdminUserRestTemplate = createTemplate("pedro", "1234");
 	}
 	
 	private OAuth2RestTemplate createTemplate(String username, String password) {
