@@ -20,13 +20,12 @@ public class AuthServerConfig extends WebSecurityConfigurerAdapter{
 	@Autowired
 	private CustomUserDetailsService userDetailsService;
 	
-	@Autowired
-	private UserAuthProvider userAuthProvider;
+	/*@Autowired
+	private UserAuthProvider userAuthProvider;*/
 	
 	@Override
     protected void configure(final AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService); //Custom user finder
-        auth.authenticationProvider(userAuthProvider); //Additional auth info provider
     }
 
 	@Bean
