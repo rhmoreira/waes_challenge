@@ -29,7 +29,7 @@ public interface B64DocumentService {
 	
 	/**
 	 * Save/Update a instance of {@link JsonDocument} to a database, providing only one side of the base64 data.<br>
-	 * The property the data will be set, depends on the {@link Orientation} enum value. The only possible 
+	 * The property the data will be set, depending on the {@link Orientation} enum value. The only possible 
 	 * enum values that can be used are:
 	 * <ul>
 	 * 	<li>{@link Orientation#LEFT}</li>
