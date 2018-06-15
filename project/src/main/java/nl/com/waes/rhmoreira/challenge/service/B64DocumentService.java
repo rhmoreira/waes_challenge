@@ -45,7 +45,7 @@ public interface B64DocumentService {
 	JsonDocument save(String id, String value, Orientation orientation) throws ChallengeException;
 	
 	/**
-	 * Given the Document ID, evaluates the document date to check whether both sides are equal or not equal. <br><br>
+	 * Given the Document ID, evaluates the document data to check whether both sides are equal or not equal. <br><br>
 	 * If equal, returns a {@link DiffResult} containing the type {@link DiffResultType#EQUAL}<br><br>
 	 * If not equal, the lengths of the data are compared and if not equal, returns a {@link DiffResult} containing the type {@link DiffResultType#NOT_SAME_SIZE}<br><br>
 	 * If not equal but have the same length, returns a {@link DiffResult} containing the type {@link DiffResultType#DIFFERENT_OFFSET}<br>
