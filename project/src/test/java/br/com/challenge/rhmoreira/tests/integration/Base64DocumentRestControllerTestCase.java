@@ -12,8 +12,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.json.JacksonJsonParser;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
@@ -24,11 +22,9 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 
 import br.com.challenge.rhmoreira.tests.ChallengeBaseTest;
-import nl.com.waes.rhmoreira.challenge.app.AppStarter;
 import nl.com.waes.rhmoreira.challenge.service.vo.DiffResultType;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes=AppStarter.class, webEnvironment=WebEnvironment.RANDOM_PORT)
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class Base64DocumentRestControllerTestCase extends ChallengeBaseTest{
 	
