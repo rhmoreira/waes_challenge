@@ -40,6 +40,7 @@ public class B64DocumentServiceImpl implements B64DocumentService{
 		jsonDoc.setLeftValue(lValue);
 		jsonDoc.setRightValue(rValue);
 		
+		log.trace("Saving document {} with both data sides", id);
 		return save(jsonDoc);
 	}
 
@@ -50,6 +51,7 @@ public class B64DocumentServiceImpl implements B64DocumentService{
 		JsonDocument jsonDoc = getDocument(id);
 		jsonDoc.setValue(orientation, value);
 		
+		log.trace("Saving {} side data of document {}", orientation.name(), id);
 		return save(jsonDoc);
 	}
 	
