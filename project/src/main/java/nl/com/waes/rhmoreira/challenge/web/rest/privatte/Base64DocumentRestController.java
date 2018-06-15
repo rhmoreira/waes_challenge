@@ -3,6 +3,7 @@ package nl.com.waes.rhmoreira.challenge.web.rest.privatte;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -38,7 +39,7 @@ public class Base64DocumentRestController {
 	 * @return {@link Message}
 	 */
 	@PostMapping("/left")
-	//@PreAuthorize("hasAuthority('CHALLENGE_AUTH')")
+	@PreAuthorize("hasAuthority('CHALLENGE_AUTH')")
 	public ResponseEntity<Void> saveLeft(@PathVariable("id") String id, @RequestBody Base64Data data){
 		saveData(id, data, Orientation.LEFT);
 		return ResponseEntity.ok().build();
@@ -51,7 +52,7 @@ public class Base64DocumentRestController {
 	 * @return {@link Message}
 	 */
 	@PostMapping("/right")
-	//@PreAuthorize("hasAuthority('CHALLENGE_AUTH')")
+	@PreAuthorize("hasAuthority('CHALLENGE_AUTH')")
 	public ResponseEntity<Void> saveRight(@PathVariable("id") String id, @RequestBody Base64Data data){
 		saveData(id, data, Orientation.RIGHT);
 		return ResponseEntity.ok().build();
@@ -65,7 +66,7 @@ public class Base64DocumentRestController {
 	 * 
 	 */
 	@GetMapping
-	//@PreAuthorize("hasAuthority('CHALLENGE_AUTH')")
+	@PreAuthorize("hasAuthority('CHALLENGE_AUTH')")
 	public ResponseEntity<ResponseObject> compare(@PathVariable("id") String id){
 		DiffResult evaluation = b64DocService.evaluateJsonDocument(id);
 		
