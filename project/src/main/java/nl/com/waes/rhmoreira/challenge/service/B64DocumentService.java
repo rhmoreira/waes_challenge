@@ -47,7 +47,7 @@ public interface B64DocumentService {
 	/**
 	 * Given the Document ID, evaluates the document data to check whether both sides are equal or not equal. <br><br>
 	 * If equal, returns a {@link DiffResult} containing the type {@link DiffResultType#EQUAL}<br><br>
-	 * If not equal, the lengths of the data are compared and if not equal, returns a {@link DiffResult} containing the type {@link DiffResultType#NOT_SAME_SIZE}<br><br>
+	 * If not equal, the lengths of the data are compared and if they are not the same size, returns a {@link DiffResult} containing the type {@link DiffResultType#NOT_SAME_SIZE}<br><br>
 	 * If not equal but have the same length, returns a {@link DiffResult} containing the type {@link DiffResultType#DIFFERENT_OFFSET}<br>
 	 * 
 	 * @param docId The id of the JsonDocument
