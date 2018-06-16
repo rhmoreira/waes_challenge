@@ -29,3 +29,16 @@ Make assumptions in the implementation explicit, choices are good but need to be
 * Clear and to the point readme on usage
 
 # The Project
+
+Developed on [Eclipse Oxygen](https://www.eclipse.org/oxygen/).
+
+## Technologies
+
+This project was built using [Spring Boot](https://spring.io/projects/spring-boot) because of its simplicity, easy setup and startup, almost intuitive configuration and wide range of comunities and forums.
+
+The technologies behind it are:
+* Spring web, using rest controllers to implement the Controller layer of the MVC design pattern.
+ * Tomcat as the embedded web container.
+ * Spring data, to implement the Model layer
+  * Embedded H2 as the relational Data Base to store the users allowed to access the application
+  * Embedded MongoDB as the NOSQL Data Base to store the Base64 Json Documents described on the requirements session
