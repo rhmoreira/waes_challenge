@@ -46,7 +46,7 @@ The technologies behind it are:
  
  ### Hows and Whys
  
- As mentioned above, spring boot is currently the best alternative for fast and small projects, that provides a wide variety of tools, frameworks, configurations and ease of use.
+ As mentioned above, this project was written using spring boot. The reason is because it is currently the best alternative for fast and small projects, that provides a wide variety of tools, frameworks, configurations and ease of use.
  
  The authentication/authorization layer was not a requirement. A basic, in-memory, H2 data-base was used to store the allowed users of the application. Nevertheless, "suggestions for improvement" was mentioned as "nices to have". So, why not some hands on first and suggest something already working?
  
