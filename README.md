@@ -59,12 +59,12 @@ The technologies behind it are:
  To run the application, Java JDK/JRE 1.8+ and Maven 3.0+ are required to be installed in the machine.
  
  To run the project itself, open the **project** folder.
-### To run the application use
+### To run the application, use:
 ```
 $ mvn_run.cmd
 ```
 
-### To run the application test cases use
+### To run the application test cases, use:
 ```
 $ mvn_tests.cmd
 ```
