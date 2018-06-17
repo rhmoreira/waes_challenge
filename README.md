@@ -48,7 +48,8 @@ The technologies behind it are:
  
  As mentioned above, this project was written using spring boot. The reason is because it is currently the best alternative for fast and small projects, that provides a wide variety of tools, frameworks, configurations and ease of use.
  
- The authentication/authorization layer was not a requirement. A basic, in-memory, H2 data-base was used to store the allowed users of the application. Nevertheless, "suggestions for improvement" was mentioned as "nices to have". So, why not some hands on first and suggest something already working?
+ The authentication/authorization layer was not a requirement. A basic, in-memory, H2 data-base was used to store the allowed users of the application. Nevertheless, "suggestions for improvement" was mentioned as "nices to have". So, why not some hands on first and suggest something already working?  
+ **OBS:** ***The spring security annotation @PreAuthorize, that prevents unauthorized access to the Base64 controller endoints are commented for practical reasons. To make the endpoints safe for authorized users only, simply uncomment that in the class (nl.com.waes.rhmoreira.challenge.web.rest.privatte.Base64DocumentRestController).***
  
  There were no requirements concerning the base64 documents persistence layer. The assumption that this application would demand lots of concurrent access, resulting in lots of IO processing and also no requirements to relate this document to any other entity, a NOSql data-base seemed to be the best option to store this kind of data.
  
