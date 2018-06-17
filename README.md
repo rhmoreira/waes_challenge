@@ -30,7 +30,7 @@ Make assumptions in the implementation explicit, choices are good but need to be
 
 # The Project
 
-Developed on [Eclipse Oxygen](https://www.eclipse.org/oxygen/).
+Developed with [Eclipse Oxygen](https://www.eclipse.org/oxygen/).
 
 ## Technologies
 
