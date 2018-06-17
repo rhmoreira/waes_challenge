@@ -52,7 +52,7 @@ public class Base64DocumentRestController {
 	 * @return {@link Message}
 	 */
 	@PostMapping("/right")
-//	@PreAuthorize("hasAuthority('CHALLENGE_AUTH')")
+	//@PreAuthorize("hasAuthority('CHALLENGE_AUTH')")
 	public ResponseEntity<Void> saveRight(@PathVariable("id") String id, @RequestBody Base64Data data){
 		saveData(id, data, Orientation.RIGHT);
 		return ResponseEntity.ok().build();
@@ -66,7 +66,7 @@ public class Base64DocumentRestController {
 	 * 
 	 */
 	@GetMapping
-	@PreAuthorize("hasAuthority('CHALLENGE_AUTH')")
+	//@PreAuthorize("hasAuthority('CHALLENGE_AUTH')")
 	public ResponseEntity<ResponseObject> compare(@PathVariable("id") String id){
 		DiffResult evaluation = b64DocService.evaluateJsonDocument(id);
 		
