@@ -37,8 +37,23 @@ Developed on [Eclipse Oxygen](https://www.eclipse.org/oxygen/).
 This project was built using [Spring Boot](https://spring.io/projects/spring-boot) because of its simplicity, easy setup and startup, almost intuitive configuration and wide range of comunities and forums.
 
 The technologies behind it are:
-* Spring web, using rest controllers to implement the Controller layer of the MVC design pattern.
- * Tomcat as the embedded web container.
- * Spring data, to implement the Model layer
-  * Embedded H2 as the relational Data Base to store the users allowed to access the application
-  * Embedded MongoDB as the NOSQL Data Base to store the Base64 Json Documents described on the [requirements](#requirements) session
+* Spring web, using rest controllers to implement the Controller layer of the MVC design pattern;
+ * Tomcat as the embedded web container;
+ * Oauth2 as the authentication layer;
+ * Spring data, to implement the Model/Persistence layer:
+   * Embedded H2 as the relational Data Base to store the users allowed to access the application;
+   * Embedded MongoDB as the NOSQL Data Base to store the Base64 Json Documents described on the [requirements](#requirements) session.
+ 
+ ### Hows and Whys
+ 
+ As mentioned above, spring boot is currently the best alternative for fast and small projects, that provides a wide variety of tools, frameworks, configurations and ease of use.
+ 
+ The authentication/authorization layer was not a requirement. A basic, in-memory, H2 data-base was used to store the allowed users of the application. Nevertheless, "suggestions for improvement" was mentioned as "nices to have". So, why not some hands on first and suggest something already working?
+ 
+ There were no requirements concerning the base64 documents persistence layer. The assumption that this application would demand lots of concurrent access, resulting in lots of IO processing and also no requirements to relate this document to any other entity, a NOSql data-base seemed to be the best option to store this kind of data.
+ 
+ Since the purpose of this project is to store base64 data, a basic validation, as to whether the base64 data is a valid base64 structure or not, was implemented to prevent the persistence of simply any kind of String representation data.
+ 
+ # Running it
+ 
+ To run the application, Java JDK/JRE 1.8+ and Maven 3.0+ are required.
