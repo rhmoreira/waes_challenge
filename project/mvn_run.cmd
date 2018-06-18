@@ -2,4 +2,4 @@
 
 call mvn_config.cmd
 
-mvn.cmd spring-boot:run
+call mvn.cmd spring-boot:run
