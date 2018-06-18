@@ -61,12 +61,23 @@ The technologies behind it are:
  
  To run the application, open the **project** folder.
 ### To simply start the application, in command line, run the following script:
+#### Windows
 ```
 $ mvn_run.cmd
 ```
+#### Linux
+```
+$ mvn_run.sh
+```
+
 
 ### To run the application test cases, in the command line, run the following:
+#### Windows
 ```
 $ mvn_tests.cmd
+```
+#### Linux
+```
+$ mvn_tests.sh
 ```
 
