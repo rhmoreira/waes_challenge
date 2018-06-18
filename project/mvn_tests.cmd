@@ -2,4 +2,6 @@
 
 call mvn_config.cmd
 
-mvn.cmd test
+call mvn.cmd test
+
+pause
