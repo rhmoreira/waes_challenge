@@ -201,7 +201,6 @@ public class JsonDocumentTestCase extends ChallengeBaseTest{
 		DiffResult diffResult = docService.evaluateJsonDocument(TEST_DOC_ID);
 		
 		assertEquals(DiffResultType.DIFFERENT_OFFSET, diffResult.getDiffType());
-		assertEquals(DiffResultType.DIFFERENT_OFFSET.getDescription(), diffResult.getDiffType().getDescription());
 	}
 	
 	@Test

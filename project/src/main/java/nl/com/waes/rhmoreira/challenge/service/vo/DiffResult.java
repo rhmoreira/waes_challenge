@@ -31,8 +31,17 @@ public class DiffResult {
 	 * @param diffType
 	 */
 	public DiffResult(DiffResultType diffType) {
+		this(diffType, "");
+	}
+
+	/**
+	 * Creates a result given the provided type with extra info.
+	 * @param diffType The type
+	 * @param result Extra info
+	 */
+	public DiffResult(DiffResultType diffType, String result) {
 		this.diffType = diffType;
-		this.result = diffType.getDescription();
+		this.result = diffType.getDescription() + ". " + result;
 	}
 
 	public String getResult() {

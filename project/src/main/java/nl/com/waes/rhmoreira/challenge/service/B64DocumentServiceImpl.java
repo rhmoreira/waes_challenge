@@ -1,8 +1,10 @@
 package nl.com.waes.rhmoreira.challenge.service;
 
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Base64;
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -136,15 +138,21 @@ public class B64DocumentServiceImpl implements B64DocumentService{
 			return new DiffResult(DiffResultType.NOT_SAME_SIZE);
 		}else {
 			log.trace("Document {} data are not equal but have the same byte lengths", docId);
+			
+			List<String> diffs = new ArrayList<>();
 			for (int i = 0; i < leftValueBytes.length; i++) {
 				byte leftByte = leftValueBytes[i];
 				byte rightByte = rightValueBytes[i];
 				
-				if ( (leftByte & rightByte) != leftByte)
-					log.trace("Document {}: Offset={}, Index={}", docId,  leftByte ^ rightByte, i);
+				if ( (leftByte & rightByte) != leftByte) {
+					int offset = leftByte ^ rightByte;
+
+					log.trace("Document {}: Offset={}, Index={}", docId,  offset, i);
+					diffs.add(String.format(" Index=%d <-> Offset=%d", i, offset));
+				}
 			}
 			
-			return new DiffResult(DiffResultType.DIFFERENT_OFFSET);
+			return new DiffResult(DiffResultType.DIFFERENT_OFFSET, "Differences: " + diffs.toString());
 		}
 	}
 	
