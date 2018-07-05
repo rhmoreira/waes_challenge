@@ -13,6 +13,7 @@ import nl.com.waes.rhmoreira.challenge.db.nosql.entity.JsonDocument;
 import nl.com.waes.rhmoreira.challenge.db.nosql.entity.Orientation;
 import nl.com.waes.rhmoreira.challenge.db.nosql.repository.DocumentRepository;
 import nl.com.waes.rhmoreira.challenge.service.strategies.diff.DiffEvaluator;
+import nl.com.waes.rhmoreira.challenge.service.strategies.diff.DiffEvaluatorStrategy;
 import nl.com.waes.rhmoreira.challenge.service.vo.DiffResult;
 
 /**
@@ -125,8 +126,8 @@ public class B64DocumentServiceImpl implements B64DocumentService{
 		
 		log.debug("Document {}: Left length = {}, Right length: {}", docId, leftValueBytes.length, rightValueBytes.length);
 		
-		DiffEvaluator diffEval = new DiffEvaluator();
-		DiffResult diffResult = diffEval.evaluate(jsonDoc);
+		DiffEvaluatorStrategy diffStrategy = new DiffEvaluator();
+		DiffResult diffResult = diffStrategy.evaluate(jsonDoc);
 			
 		return diffResult;
 	}

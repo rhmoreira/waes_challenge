@@ -7,7 +7,7 @@ import nl.com.waes.rhmoreira.challenge.db.nosql.entity.JsonDocument;
 import nl.com.waes.rhmoreira.challenge.service.vo.DiffResult;
 import nl.com.waes.rhmoreira.challenge.service.vo.DiffResultType;
 
-public class DiffEvaluator {
+public class DiffEvaluator implements DiffEvaluatorStrategy{
 	
 	private static final Map<DiffResultType, DiffEvaluatorStrategy> STRATEGIES = new HashMap<>();
 	
@@ -17,6 +17,7 @@ public class DiffEvaluator {
 		STRATEGIES.put(DiffResultType.DIFFERENT_OFFSET, new DiffSameSizeDiffOffsetsEvaluatorStrategy());
 	}
 	
+	@Override
 	public DiffResult evaluate(JsonDocument jsonDoc) {
 		DiffResult diffResult = null;
 		for (DiffResultType diffType: DiffResultType.values()) {
