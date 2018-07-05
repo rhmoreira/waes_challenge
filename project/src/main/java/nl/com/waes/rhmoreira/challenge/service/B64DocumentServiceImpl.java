@@ -1,10 +1,7 @@
 package nl.com.waes.rhmoreira.challenge.service;
 
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Base64;
-import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,8 +12,8 @@ import nl.com.waes.rhmoreira.challenge.ChallengeException;
 import nl.com.waes.rhmoreira.challenge.db.nosql.entity.JsonDocument;
 import nl.com.waes.rhmoreira.challenge.db.nosql.entity.Orientation;
 import nl.com.waes.rhmoreira.challenge.db.nosql.repository.DocumentRepository;
+import nl.com.waes.rhmoreira.challenge.service.strategies.diff.DiffEvaluator;
 import nl.com.waes.rhmoreira.challenge.service.vo.DiffResult;
-import nl.com.waes.rhmoreira.challenge.service.vo.DiffResultType;
 
 /**
  * Service class to provide business operations for {@link JsonDocument} classes
@@ -128,32 +125,10 @@ public class B64DocumentServiceImpl implements B64DocumentService{
 		
 		log.debug("Document {}: Left length = {}, Right length: {}", docId, leftValueBytes.length, rightValueBytes.length);
 		
-		if (leftValue.equals(rightValue) && Arrays.equals(leftValueBytes, rightValueBytes)) {
-			log.trace("Document [{}] data are equal", docId);
+		DiffEvaluator diffEval = new DiffEvaluator();
+		DiffResult diffResult = diffEval.evaluate(jsonDoc);
 			
-			return new DiffResult(DiffResultType.EQUAL);
-		}else if (leftValueBytes.length != rightValueBytes.length) {
-			log.trace("Document {} data are not equal and have different byte lengths", docId);
-			
-			return new DiffResult(DiffResultType.NOT_SAME_SIZE);
-		}else {
-			log.trace("Document {} data are not equal but have the same byte lengths", docId);
-			
-			List<String> diffs = new ArrayList<>();
-			for (int i = 0; i < leftValueBytes.length; i++) {
-				byte leftByte = leftValueBytes[i];
-				byte rightByte = rightValueBytes[i];
-				
-				if ( (leftByte & rightByte) != leftByte) {
-					int offset = leftByte ^ rightByte;
-
-					log.trace("Document {}: Offset={}, Index={}", docId,  offset, i);
-					diffs.add(String.format(" Index=%d <-> Offset=%d", i, offset));
-				}
-			}
-			
-			return new DiffResult(DiffResultType.DIFFERENT_OFFSET, "Differences: " + diffs.toString());
-		}
+		return diffResult;
 	}
 	
 }
