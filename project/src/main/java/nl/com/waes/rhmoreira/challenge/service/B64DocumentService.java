@@ -5,6 +5,7 @@ import nl.com.waes.rhmoreira.challenge.db.nosql.entity.JsonDocument;
 import nl.com.waes.rhmoreira.challenge.db.nosql.entity.Orientation;
 import nl.com.waes.rhmoreira.challenge.service.vo.DiffResult;
 import nl.com.waes.rhmoreira.challenge.service.vo.DiffResultType;
+import nl.com.waes.rhmoreira.challenge.service.vo.NoDiffResult;
 
 /**
  * Provides business logic to store documents containing two properties containing Base64 data and comparison 
@@ -48,7 +49,8 @@ public interface B64DocumentService {
 	 * Given the Document ID, evaluates the document data to check whether both sides are equal or not equal. <br><br>
 	 * If equal, returns a {@link DiffResult} containing the type {@link DiffResultType#EQUAL}<br><br>
 	 * If not equal, the lengths of the data are compared and if they are not the same size, returns a {@link DiffResult} containing the type {@link DiffResultType#NOT_SAME_SIZE}<br><br>
-	 * If not equal but have the same length, returns a {@link DiffResult} containing the type {@link DiffResultType#DIFFERENT_OFFSET}<br>
+	 * If not equal but have the same length, returns a {@link DiffResult} containing the type {@link DiffResultType#DIFFERENT_OFFSET}<br><br>
+	 * If not evaluation could be made, returns a {@link NoDiffResult} containing a null {@link DiffResultType}<br>
 	 * 
 	 * @param docId The id of the JsonDocument
 	 * @return {@link DiffResult}

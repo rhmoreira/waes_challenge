@@ -5,13 +5,14 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import br.com.challenge.rhmoreira.tests.ChallengeBaseTest;
@@ -20,7 +21,9 @@ import nl.com.waes.rhmoreira.challenge.ChallengeException;
 import nl.com.waes.rhmoreira.challenge.db.nosql.entity.JsonDocument;
 import nl.com.waes.rhmoreira.challenge.db.nosql.entity.Orientation;
 import nl.com.waes.rhmoreira.challenge.db.nosql.repository.DocumentRepository;
+import nl.com.waes.rhmoreira.challenge.service.B64DocumentService;
 import nl.com.waes.rhmoreira.challenge.service.B64DocumentServiceImpl;
+import nl.com.waes.rhmoreira.challenge.service.strategies.diff.DiffEvaluatorStrategyContext;
 import nl.com.waes.rhmoreira.challenge.service.vo.DiffResult;
 import nl.com.waes.rhmoreira.challenge.service.vo.DiffResultType;
 
@@ -29,17 +32,27 @@ public class JsonDocumentTestCase extends ChallengeBaseTest{
 	
 	protected Logger log = LoggerFactory.getLogger(JsonDocumentTestCase.class);
 
-	@InjectMocks
-	private B64DocumentServiceImpl docService;
-	
+	private B64DocumentService docService;
 	@Mock
 	private DocumentRepository docRepo;
+	@Autowired
+	private DiffEvaluatorStrategyContext strategyContext;
+	private boolean setupDone;
 
 	private static final String TEST_DOC_ID = "ABCDEFGH123";
 
 	private static final String TEST_DOC_EQUAL_VALUE1 = "Y2hhbGxlbmdl";
 	private static final String TEST_DOC_DIFF_VALUE2 = "ZWduZWxsYWhj";
 	private static final String TEST_DOC_DIFF_VALUE3 = "ZWduZWxsYWh";
+	
+	@Before
+	public void setup() {
+		if (!setupDone)
+			this.docService = new B64DocumentServiceImpl(docRepo, strategyContext);
+		
+		setupDone = true;
+	}
+	
 	
 	@Test
 	public void saveLeftAndRight() {
