@@ -1,37 +1,33 @@
 package nl.com.waes.rhmoreira.challenge.service.strategies.diff;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
-import nl.com.waes.rhmoreira.challenge.db.nosql.entity.JsonDocument;
-import nl.com.waes.rhmoreira.challenge.service.vo.DiffResult;
+import org.springframework.stereotype.Service;
+
 import nl.com.waes.rhmoreira.challenge.service.vo.DiffResultType;
 
-public class DiffEvaluator implements DiffEvaluatorStrategy{
+@Service
+public class DiffEvaluator implements DiffEvaluatorStrategyContext{
 	
-	private static final Map<DiffResultType, DiffEvaluatorStrategy> STRATEGIES = new HashMap<>();
+	private static final Map<DiffResultType, DiffEvaluatorStrategy> STRATEGIES = new LinkedHashMap<>();
 	
 	static {
 		STRATEGIES.put(DiffResultType.EQUAL, new DiffEqualEvaluatorStrategy());
 		STRATEGIES.put(DiffResultType.NOT_SAME_SIZE, new DiffNotSameSizeEvaluatorStrategy());
 		STRATEGIES.put(DiffResultType.DIFFERENT_OFFSET, new DiffSameSizeDiffOffsetsEvaluatorStrategy());
+		STRATEGIES.put(null, new NoDiffEvaluatorStrategy());
 	}
 	
 	@Override
-	public DiffResult evaluate(JsonDocument jsonDoc) {
-		DiffResult diffResult = null;
-		for (DiffResultType diffType: DiffResultType.values()) {
-			diffResult = evaluate(diffType, jsonDoc);
-			if (diffResult != null)
-				break;
-		}
-		
-		return diffResult;
+	public DiffEvaluatorStrategy findStrategy(DiffResultType diffType) {
+		DiffEvaluatorStrategy evaluatorStrategy = STRATEGIES.get(diffType);
+		return evaluatorStrategy;
 	}
 	
-	public DiffResult evaluate(DiffResultType diffType, JsonDocument jsonDoc) {
-		DiffEvaluatorStrategy evaluatorStrategy = STRATEGIES.get(diffType);
-		return evaluatorStrategy.evaluate(jsonDoc);
+	@Override
+	public DiffEvaluatorStrategy getDefaultStrategy() {
+		return findStrategy(null);
 	}
 	
 }
